@@ -1,0 +1,89 @@
+﻿<UserControl
+    x:Class="RentalPlanning.ViewContent.ClientsListForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentalPlanning.ViewContent"
+    xmlns:models="using:RentalPlanning.Models"
+    xmlns:views="using:RentalPlanning.Views"
+    xmlns:custom="using:RentalPlanning.CustomElements"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid 
+        Height="Auto">
+        <Frame 
+            x:Name="ClientsFrame" 
+            Height="Auto">
+            <StackPanel 
+                Height="Auto"
+                VerticalAlignment="Top"
+                Spacing="16">
+                <ListView 
+                    Grid.Row="1"
+                    DataContext="{Binding Session}"
+                    ItemsSource="{Binding clients}"
+                    IsItemClickEnabled="True"
+                    SelectionMode="None" 
+                    CornerRadius="10">
+                    <ListView.ItemTemplate >
+                        <DataTemplate 
+                            x:DataType="models:Client">
+
+                            <custom:ContentContainer>
+                                <custom:ContentContainer.AdditionalContent >
+                                    <StackPanel>
+                                        
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Rectangle 
+                                                Grid.RowSpan="2"
+                                                Margin="6,12,6,6"
+                                                RadiusX="15"
+                                                RadiusY="15"
+                                                Opacity="0.2"
+                                                Width="45"
+                                                Fill="{ThemeResource ApplicationForegroundThemeBrush}"/>
+                                            <Rectangle 
+                                                Grid.RowSpan="2"
+                                                Margin="12,18,12,12"
+                                                RadiusX="10"
+                                                RadiusY="10"
+                                                Fill="Red"/>
+                                            <custom:TextBlockHeader 
+                                                Grid.Column="1"
+                                                Label="{x:Bind Name}"
+                                                Margin="0,6,0,0"/>
+                                            <RatingControl 
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                IsClearEnabled="False"
+                                                IsReadOnly="True" 
+                                                Value="{x:Bind Rating}"   
+                                                Margin="6,0,0,-3" 
+                                                HorizontalAlignment="Left"/>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </custom:ContentContainer.AdditionalContent>
+                            </custom:ContentContainer>
+                    
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Frame>
+    </Grid>
+</UserControl>
+    

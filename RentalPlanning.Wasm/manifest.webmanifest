@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "RentalPlanning",
+  "display": "standalone",
+  "name": "RentalPlanning",
+  "short_name": "RentalPlanning",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}

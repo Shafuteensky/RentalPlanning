@@ -1,0 +1,164 @@
+﻿<Page  
+    x:Class="RentalPlanning.Views.MainPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:RentalPlanning"
+	xmlns:forms="using:RentalPlanning.ViewContent"
+	xmlns:customUI="using:RentalPlanning.CustomElements"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:uen="using:Uno.Extensions.Navigation.UI"
+	xmlns:utu="using:Uno.Toolkit.UI"
+	NavigationCacheMode="Required"
+	mc:Ignorable="d"
+	Background="{ThemeResource BackgroundBrush}"
+    RequestedTheme="Dark">
+
+    <Grid utu:SafeArea.Insets="All">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush 
+                Stretch="UniformToFill"
+                Opacity="0.2"
+                ImageSource="ms-appx:///RentalPlanning/Assets/waves.png" />
+        </Grid.Background>
+
+
+        <Grid 
+            Grid.Row="0"
+            uen:Region.Attached="True"
+            uen:Region.Navigator="Visibility">
+            <Grid 
+                uen:Region.Name="Calendar"
+                Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <customUI:SimpleHeader Grid.Row="0" Label="Записи — календарь" />
+                <CalendarView
+                    Grid.Row="1"
+                    CornerRadius="10"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"
+                    Margin="12"/>
+            </Grid>
+            <Grid 
+                uen:Region.Name="List"
+                Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <customUI:SimpleHeader 
+                    Label="Записи — список" 
+                    Grid.Row="0" />
+                <ScrollViewer 
+                    Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    IsVerticalScrollChainingEnabled="True"
+                    HorizontalScrollMode="Disabled" 
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollMode="Enabled" 
+                    VerticalScrollBarVisibility="Auto"
+                    IsTabStop="True"
+                    ZoomMode="Enabled">
+                    <forms:EntriesListForm />
+                </ScrollViewer>
+            </Grid>
+            <Grid 
+                uen:Region.Name="Clients"
+                Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <customUI:SimpleHeader 
+                    Label="Клиенты" 
+                    Grid.Row="0" />
+                <ScrollViewer 
+                    Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    IsVerticalScrollChainingEnabled="True"
+                    HorizontalScrollMode="Disabled" 
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollMode="Enabled" 
+                    VerticalScrollBarVisibility="Auto"
+                    IsTabStop="True"
+                    ZoomMode="Enabled">
+                    <forms:ClientsListForm x:Name="ClientsList"/>
+                </ScrollViewer>
+            </Grid>
+            <Grid 
+                uen:Region.Name="Settings"
+                Visibility="Collapsed">
+                <StackPanel
+                    Grid.Row="0">
+                    <customUI:SimpleHeader 
+                        Label="Настройки" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <utu:TabBar Grid.Row="1" 
+                    SelectedIndex="0" 
+                    Style="{StaticResource BottomTabBarStyle}"
+                    VerticalAlignment="Bottom">
+            <utu:TabBar.Items>
+                
+                <utu:TabBarItem Content="Календарь" uen:Navigation.Request="./Calendar">
+                    <utu:TabBarItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/calendar.png" />
+                    </utu:TabBarItem.Icon>
+                </utu:TabBarItem>
+                
+                <utu:TabBarItem Content="Список" uen:Navigation.Request="./List">
+                    <utu:TabBarItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/list.png" />
+                    </utu:TabBarItem.Icon>
+                </utu:TabBarItem>
+
+                <utu:TabBarItem Style="{StaticResource BottomFabTabBarItemStyle}" >
+                    <utu:TabBarItem.Flyout>
+                        <MenuFlyout MenuFlyoutPresenterStyle="{StaticResource MenuFlyoutPresenterStyle}"
+                                    Placement="Top">
+                            <MenuFlyoutItem Style="{StaticResource MenuFlyoutItemStyle}" 
+                                            Command="{Binding GoToEntryModel}" Text="Запись">
+                                <MenuFlyoutItem.Icon>
+                                    <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/pass.png" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem Style="{StaticResource MenuFlyoutItemStyle}" 
+                                            Command="{Binding GoToClient}" Text="Клиент">
+                                <MenuFlyoutItem.Icon>
+                                    <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/person.png" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </utu:TabBarItem.Flyout>
+                    <utu:TabBarItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/add.png" />
+                    </utu:TabBarItem.Icon>
+                </utu:TabBarItem>
+                
+                <utu:TabBarItem Content="Клиенты" uen:Navigation.Request="./Clients">
+                    <utu:TabBarItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/team.png" />
+                    </utu:TabBarItem.Icon>
+                </utu:TabBarItem>
+                
+                <utu:TabBarItem Content="Настройки" uen:Navigation.Request="./Settings">
+                    <utu:TabBarItem.Icon>
+                        <BitmapIcon UriSource="ms-appx:///RentalPlanning/Assets/Icons/settings.png" />
+                    </utu:TabBarItem.Icon>
+                </utu:TabBarItem>
+                
+            </utu:TabBar.Items>
+        </utu:TabBar>
+    </Grid>
+</Page>

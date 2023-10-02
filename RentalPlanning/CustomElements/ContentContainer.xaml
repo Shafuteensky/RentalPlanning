@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Name="RootControl"
+    x:Class="RentalPlanning.CustomElements.ContentContainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentalPlanning.CustomElements"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Style="{StaticResource RedGrid}"
+        CornerRadius="20"
+        Margin="0,6,0,6">
+        <Rectangle 
+            Opacity="0.7"
+            Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            Stretch="Fill"/>
+        <ScrollContentPresenter  
+            Margin="6,0,6,6"
+            Content="{Binding AdditionalContent, ElementName=RootControl}" />
+    </Grid>
+</UserControl>

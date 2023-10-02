@@ -1,0 +1,10 @@
+{
+  "profiles": {
+	"RentalPlanning.Windows (Package)": {
+	  "commandName": "MsixPackage"
+	},
+	"RentalPlanning.Windows (Unpackaged)": {
+	  "commandName": "Project"
+	}
+  }
+}

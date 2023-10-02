@@ -1,0 +1,116 @@
+﻿<UserControl
+    x:Class="RentalPlanning.ViewContent.ClientForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RentalPlanning.ViewContent"
+    xmlns:custom="using:RentalPlanning.CustomElements"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel>
+        
+        <custom:TextBlockBase 
+            Label="ФИО"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <custom:TextBox
+                Grid.Column="0" />
+            <Rectangle 
+                Grid.Column="1"
+                Margin="0,0,6,0"
+                RadiusX="15"
+                RadiusY="15"
+                Opacity="0.2"
+                Fill="{ThemeResource ApplicationForegroundThemeBrush}"
+                Height="57"
+                VerticalAlignment="Top"/>
+            <Button 
+                Grid.Column="1"
+                Height="45"
+                Margin="6,0,12,6"
+                CornerRadius="10"
+                Background="Red" >
+                <Button.Flyout>
+                    <Flyout>
+                        <Border 
+                            Height="Auto" 
+                            Width="Auto" 
+                            BorderThickness="3">
+                            <ColorPicker
+                                ColorSpectrumShape="Ring"
+                                IsMoreButtonVisible="False"
+                                IsColorSliderVisible="False"
+                                IsColorChannelTextInputVisible="False"
+                                IsHexInputVisible="False"
+                                IsAlphaEnabled="False"
+                                IsAlphaSliderVisible="False"
+                                IsAlphaTextInputVisible="True"
+                                Margin="6,0,6,6"/>
+                        </Border>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </Grid>
+
+        <custom:TextBlockBase 
+            Label="Контактный номер"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <custom:TextBox
+                Grid.Column="0" />
+            <Button 
+                Grid.Column="1" 
+                Margin="6,0,6,6"
+                Height="55"
+                Width="70"
+                CornerRadius="10"
+                AutomationProperties.AutomationId="SecondPageButton" >
+                <Image 
+                    Margin="-3"
+                    Source="ms-appx:///RentalPlanning/Assets/Icons/phone.png" />
+            </Button>
+            <Button 
+                Grid.Column="2" 
+                Margin="6,0,6,6"
+                Height="55"
+                Width="70"
+                CornerRadius="10"
+                Background="#25D366"
+                AutomationProperties.AutomationId="SecondPageButton" >
+                <Image 
+                    Margin="-3" 
+                    Source="ms-appx:///RentalPlanning/Assets/Icons/whatsapp.png" />
+            </Button>
+        </Grid>
+
+        <custom:TextBlockBase 
+            Label="Рейтинг"
+            Margin="0"/>
+        <Viewbox 
+            MaxHeight="50"
+            HorizontalAlignment="Left" 
+            Margin="6,0,0,0">
+            <RatingControl
+                IsClearEnabled="True"
+                IsReadOnly="False"
+                Margin="0,-6,0,-9"/>
+        </Viewbox>
+
+        <custom:TextBlockBase 
+            Label="Примечания"/>
+        <custom:TextBox 
+            Wrap="Wrap"
+            AllowDrop="True"/>
+
+    </StackPanel>
+</UserControl>
